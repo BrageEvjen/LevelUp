@@ -1,7 +1,6 @@
 C:\Users\brage\LevelUp\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\brage\LevelUp\bin\Debug\net8.0\appsettings.json
 C:\Users\brage\LevelUp\bin\Debug\net8.0\LevelUp.staticwebassets.runtime.json
-C:\Users\brage\LevelUp\bin\Debug\net8.0\app.db
 C:\Users\brage\LevelUp\bin\Debug\net8.0\LevelUp.exe
 C:\Users\brage\LevelUp\bin\Debug\net8.0\LevelUp.deps.json
 C:\Users\brage\LevelUp\bin\Debug\net8.0\LevelUp.runtimeconfig.json
@@ -137,3 +136,4 @@ C:\Users\brage\LevelUp\obj\Debug\net8.0\refint\LevelUp.dll
 C:\Users\brage\LevelUp\obj\Debug\net8.0\LevelUp.pdb
 C:\Users\brage\LevelUp\obj\Debug\net8.0\LevelUp.genruntimeconfig.cache
 C:\Users\brage\LevelUp\obj\Debug\net8.0\ref\LevelUp.dll
+C:\Users\brage\LevelUp\bin\Debug\net8.0\app.db

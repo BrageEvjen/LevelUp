@@ -1,26 +1,63 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@using LevelUp.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 <ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
-    <li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
-    </li>
-    <li class="nav-item">
-        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-        </form>
-    </li>
-}
-else
-{
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>
-}
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <div id="level-up-bar" style="background: black; padding: 10px;">
+            <!-- Container for level and progress bar with flexbox -->
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <!-- Display the user's current level -->
+                <div style="font-size: 14px; font-weight: bold; color: white;">
+                    Level: @(User.Identity?.IsAuthenticated == true ? (await UserManager.GetUserAsync(User))?.CurrentLevel : 0)
+                </div>
+
+                @{
+                    var currentUser = await UserManager.GetUserAsync(User);
+                }
+
+                @{
+                var progressPercentage = 0; // Default value
+                }
+
+                @if (currentUser != null)
+                {
+                    @if (currentUser.XPToNextLevel != 0)
+                    {
+                    progressPercentage = (currentUser.CurrentXP * 100) / currentUser.XPToNextLevel;
+                    }
+
+                    <!-- Progress bar container -->
+                    <!-- Progress bar container -->
+                    <div style="position: relative; height: 20px; width: 500px; background: #ddd; border-radius: 10px; overflow: hidden;">
+                        <!-- Inner bar indicating progress -->
+                        <div style="width: @progressPercentage%; background: #4caf50; height: 100%;"></div>
+                        <!-- Display the current XP centered over the entire bar -->
+                        <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: black; font-size: 12px; font-weight: bold; z-index: 1;">
+                            @currentUser.CurrentXP / @currentUser.XPToNextLevel
+                        </span>
+                    </div>
+                }            
+            </div>
+        </div>
+        <li class="nav-item">
+            <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+        </li>
+        <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link btn btn-link text-white">Logout</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+    }
 </ul>

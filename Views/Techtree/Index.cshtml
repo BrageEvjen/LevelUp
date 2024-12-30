@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Override the container padding from Bootstrap */
+        .container {
+            max-width: 100% !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        /* Remove margin from header's navbar */
+        header .navbar {
+            margin-bottom: 0 !important;  /* Override Bootstrap's mb-3 */
+        }
+
+        /* Reset default margins and make it full screen */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        main {
+            padding: 0 !important;  /* Remove main padding */
+        }
+
+        /* Container takes up available viewport space */
+        .grid-container {
+            width: 100vw;
+            height: calc(100vh - 116px); /* Adjusted to account for exact header (56px) and footer (60px) */
+            overflow: hidden;
+            position: relative;
+            background: #1E242E;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Rest of your styles remain the same */
+        .draggable-grid {
+            width: 3000px;
+            height: 2000px;
+            position: absolute;
+            cursor: move;
+            z-index: 1;
+
+            background-image:
+                linear-gradient(to right, #141920 1px, transparent 1px),
+                linear-gradient(to bottom, #141920 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        #coordinates {
+            position: fixed;
+            bottom: 80px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            z-index: 1000;
+            pointer-events: none;
+        }
+    </style></head>
+<body>
+<div class="grid-container">
+    <div class="draggable-grid" id="grid"></div>
+</div>
+<div id="coordinates">Position: (0, 0)</div>
+
+<script>
+    const grid = document.getElementById('grid');
+    const coords = document.getElementById('coordinates');
+    let isDragging = false;
+    let currentX;
+    let currentY;
+    let initialX;
+    let initialY;
+    let xOffset = 0;
+    let yOffset = 0;
+
+    // Center the grid initially
+    xOffset = -1000;
+    yOffset = -500;
+    setTranslate(xOffset, yOffset, grid);
+
+    grid.addEventListener('mousedown', dragStart);
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('mouseup', dragEnd);
+
+    function dragStart(e) {
+        initialX = e.clientX - xOffset;
+        initialY = e.clientY - yOffset;
+
+        if (e.target === grid) {
+            isDragging = true;
+        }
+    }
+
+    function drag(e) {
+        if (isDragging) {
+            e.preventDefault();
+
+            currentX = e.clientX - initialX;
+            currentY = e.clientY - initialY;
+
+            // Get container dimensions
+            const container = document.querySelector('.grid-container');
+            const containerWidth = container.offsetWidth;
+            const containerHeight = container.offsetHeight;
+
+            // Calculate limits
+            const minX = containerWidth - 3000; // grid width is 3000px
+            const minY = containerHeight - 2000; // grid height is 2000px
+
+            // Clamp the values
+            currentX = Math.min(0, Math.max(minX, currentX));
+            currentY = Math.min(0, Math.max(minY, currentY));
+
+            xOffset = currentX;
+            yOffset = currentY;
+
+            setTranslate(currentX, currentY, grid);
+            updateCoordinates(currentX, currentY);
+        }
+    }
+    
+    function setTranslate(xPos, yPos, el) {
+        el.style.transform = `translate(${xPos}px, ${yPos}px)`;
+    }
+
+    function dragEnd(e) {
+        initialX = currentX;
+        initialY = currentY;
+        isDragging = false;
+    }
+
+    function updateCoordinates(x, y) {
+        // Convert to grid coordinates (based on 50px grid size)
+        const gridX = Math.round(-x / 50);
+        const gridY = Math.round(-y / 50);
+        coords.textContent = `Position: (${gridX}, ${gridY})`;
+    }
+</script>
+</body>
+</html>

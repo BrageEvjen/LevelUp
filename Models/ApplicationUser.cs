@@ -16,8 +16,8 @@ namespace LevelUp.Models
         // Constructor to set the initial values
         public ApplicationUser()
         {
-            CurrentXP = 1;
-            CurrentLevel = 0;
+            CurrentXP = 0;
+            CurrentLevel = 1;
             XPToNextLevel = CalculateXPToNextLevel();
         }
 
