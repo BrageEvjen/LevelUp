@@ -5,12 +5,20 @@
       "PackagePath": "staticwebassets\\LevelUp.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\brage\\LevelUp\\wwwroot\\css\\TechTree.css",
+      "PackagePath": "staticwebassets\\css\\TechTree.css"
+    },
+    {
       "Id": "C:\\Users\\brage\\LevelUp\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
       "Id": "C:\\Users\\brage\\LevelUp\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\brage\\LevelUp\\wwwroot\\js\\TechTree.js",
+      "PackagePath": "staticwebassets\\js\\TechTree.js"
     },
     {
       "Id": "C:\\Users\\brage\\LevelUp\\wwwroot\\js\\site.js",

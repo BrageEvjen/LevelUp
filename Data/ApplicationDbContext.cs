@@ -48,40 +48,133 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         modelBuilder.Entity<ApplicationUser>().HasData(defaultUser);
 
         
-        // Insert TechTreeNodes here!
+        // Tech Tree 1: Running
         modelBuilder.Entity<TechTreeNode>().HasData(
             new TechTreeNode
             {
-                Id = 1, 
-                Name = "Run 1Km",
+                Id = 1,
+                TechTreeId = 1,
+                Name = "Running Basics",
                 Status = "Available",
                 XPReward = 100,
-                Description = "Start your running journey with a solid and impressive goal! Running a total of 1000 meters"
+                Description = "Learn proper running form and warm-up techniques",
+                X = 1000,
+                Y = 300
             },
             new TechTreeNode
             {
                 Id = 2,
-                Name = "Run 2km",
+                TechTreeId = 1,
+                Name = "5K Training",
                 Status = "Locked",
                 XPReward = 200,
-                Description = "Complete this impressive milestone of DOUBLING your previous goal! By running a total of 2000 meters!!"
+                Description = "Start your journey to running a 5K",
+                X = 1200,
+                Y = 300
             },
             new TechTreeNode
             {
                 Id = 3,
-                Name = "Run 5km",
+                TechTreeId = 1,
+                Name = "10K Milestone",
                 Status = "Locked",
-                XPReward = 400,
-                Description = "This is a big goal. This is a real runners milestone. Being a human that is able to run 5000 meters is really impressive!"
+                XPReward = 300,
+                Description = "Prepare for your first 10K run",
+                X = 1400,
+                Y = 300
             }
         );
-        
+
+        // Tech Tree 2: Strength Training
+        modelBuilder.Entity<TechTreeNode>().HasData(
+            new TechTreeNode
+            {
+                Id = 4,
+                TechTreeId = 2,
+                Name = "Bodyweight Basics",
+                Status = "Available",
+                XPReward = 100,
+                Description = "Master fundamental bodyweight exercises",
+                X = 1000,
+                Y = 300
+            },
+            new TechTreeNode
+            {
+                Id = 5,
+                TechTreeId = 2,
+                Name = "Dumbbell Training",
+                Status = "Locked",
+                XPReward = 200,
+                Description = "Introduction to dumbbell exercises",
+                X = 1200,
+                Y = 300
+            },
+            new TechTreeNode
+            {
+                Id = 6,
+                TechTreeId = 2,
+                Name = "Barbell Mastery",
+                Status = "Locked",
+                XPReward = 300,
+                Description = "Advanced barbell compound movements",
+                X = 1400,
+                Y = 300
+            }
+        );
+
+        // Tech Tree 3: Flexibility
+        modelBuilder.Entity<TechTreeNode>().HasData(
+            new TechTreeNode
+            {
+                Id = 7,
+                TechTreeId = 3,
+                Name = "Basic Stretching",
+                Status = "Available",
+                XPReward = 100,
+                Description = "Learn essential stretching techniques",
+                X = 1000,
+                Y = 300
+            },
+            new TechTreeNode
+            {
+                Id = 8,
+                TechTreeId = 3,
+                Name = "Yoga Foundations",
+                Status = "Locked",
+                XPReward = 200,
+                Description = "Introduction to yoga poses and breathing",
+                X = 1200,
+                Y = 300
+            },
+            new TechTreeNode
+            {
+                Id = 9,
+                TechTreeId = 3,
+                Name = "Advanced Flexibility",
+                Status = "Locked",
+                XPReward = 300,
+                Description = "Advanced stretching and mobility work",
+                X = 1400,
+                Y = 300
+            }
+        );
+
+        // Set up prerequisites
         modelBuilder.Entity<TechTreeNode>()
             .HasMany(t => t.Prerequisites)
             .WithMany(t => t.UnlockedNodes)
             .UsingEntity(j => j.HasData(
-                new { PrerequisitesId = 1, UnlockedNodesId = 2 },  // Run 1km unlocks Run 2km
-                new { PrerequisitesId = 2, UnlockedNodesId = 3 }   // Run 2km unlocks Run 5km
+                // Running Tree Prerequisites
+                new { PrerequisitesId = 1, UnlockedNodesId = 2 },  // Running Basics -> 5K Training
+                new { PrerequisitesId = 2, UnlockedNodesId = 3 },  // 5K Training -> 10K Milestone
+
+                // Strength Training Prerequisites
+                new { PrerequisitesId = 4, UnlockedNodesId = 5 },  // Bodyweight Basics -> Dumbbell Training
+                new { PrerequisitesId = 5, UnlockedNodesId = 6 },  // Dumbbell Training -> Barbell Mastery
+
+                // Flexibility Prerequisites
+                new { PrerequisitesId = 7, UnlockedNodesId = 8 },  // Basic Stretching -> Yoga Foundations
+                new { PrerequisitesId = 8, UnlockedNodesId = 9 }   // Yoga Foundations -> Advanced Flexibility
             ));
     }
 }

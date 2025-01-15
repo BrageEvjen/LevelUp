@@ -1,0 +1,199 @@
+﻿/* Reset and Base Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Container Layout */
+.container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+header .navbar {
+    margin-bottom: 0 !important;
+}
+
+main {
+    padding: 0 !important;
+}
+
+/* Grid Container */
+.grid-container {
+    width: 100vw;
+    height: calc(100vh - 116px);
+    overflow: hidden;
+    position: relative;
+    background: #1E242E;
+    margin: 0;
+    padding: 0;
+}
+
+/* Draggable Grid */
+.draggable-grid {
+    width: 3000px;
+    height: 2000px;
+    position: absolute;
+    cursor: move;
+    z-index: 1;
+    background-image:
+            linear-gradient(to right, #141920 1px, transparent 1px),
+            linear-gradient(to bottom, #141920 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+/* Tech Tree Node Styles */
+.tech-node {
+    position: absolute;
+    width: 128px;
+    height: 128px;
+    background: #1E293B;
+    border: 2px solid;
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Node States */
+.tech-node.available {
+    border-color: #22C55E;
+}
+
+.tech-node.locked {
+    border-color: #EF4444;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.tech-node.complete {
+    border-color: #3B82F6;
+    background: #2C3E50;
+    pointer-events: none;
+}
+
+/* Node Hover Effects */
+.tech-node:hover.available {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(39, 174, 96, 0.3);
+}
+
+/* Popup Styles */
+.tech-node .popup {
+    display: none;
+    position: absolute;
+    top: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    background: #1E293B;
+    border: 2px solid #475569;
+    border-radius: 8px;
+    padding: 16px;
+    z-index: 50;
+}
+
+.tech-node.active .popup {
+    display: block;
+}
+
+/* Node Content */
+.tech-node .content {
+    padding: 10px;
+}
+
+.tech-node .xp {
+    font-size: 0.8em;
+    color: #95A5A6;
+}
+
+/* Button Styles */
+.tech-node button {
+    width: 100%;
+    background: #22C55E;
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
+    border: none;
+    margin-top: 8px;
+}
+
+/* Connection Styles */
+.connections-layer path {
+    stroke-width: 3px;
+    fill: none;
+    transition: stroke 0.3s ease;
+}
+
+.connections-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    transform: translate(0, 0);
+}
+
+.connection-locked {
+    stroke: #EF4444;
+    opacity: 0.5;
+}
+
+.connection-available {
+    stroke: #22C55E;
+}
+
+.connection-complete {
+    stroke: #3B82F6;
+}
+
+/* Coordinates Display */
+#coordinates {
+    position: fixed;
+    bottom: 80px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: monospace;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.tree-selector {
+    position: fixed;
+    top: 70px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    gap: 10px;
+}
+
+.tree-button {
+    padding: 8px 16px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tree-button.active {
+    background: #4CAF50;
+    color: white;
+    border-color: #45a049;
+}
+
+.tree-button:hover {
+    background: #45a049;
+    color: white;
+}

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fOdP+UMJC3vej3X1LPxVFmyEUq8laHTTugUnLkDg+FI=",
+  "Hash": "IqbA+i4Pr5sqp4a415Dc0JCNL+muinffGby+8/opucQ=",
   "Source": "LevelUp",
   "BasePath": "_content/LevelUp",
   "Mode": "Default",
@@ -1214,6 +1214,25 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
+      "Identity": "C:\\Users\\brage\\LevelUp\\wwwroot\\css\\TechTree.css",
+      "SourceId": "LevelUp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\brage\\LevelUp\\wwwroot\\",
+      "BasePath": "_content/LevelUp",
+      "RelativePath": "css/TechTree.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\TechTree.css"
+    },
+    {
       "Identity": "C:\\Users\\brage\\LevelUp\\wwwroot\\favicon.ico",
       "SourceId": "LevelUp",
       "SourceType": "Discovered",
@@ -1250,6 +1269,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
+    },
+    {
+      "Identity": "C:\\Users\\brage\\LevelUp\\wwwroot\\js\\TechTree.js",
+      "SourceId": "LevelUp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\brage\\LevelUp\\wwwroot\\",
+      "BasePath": "_content/LevelUp",
+      "RelativePath": "js/TechTree.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\TechTree.js"
     },
     {
       "Identity": "C:\\Users\\brage\\LevelUp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
