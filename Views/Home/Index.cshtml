@@ -1,8 +1,75 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    var dailyQuest = ViewData["DailyQuest"] as LevelUp.Models.DailyQuest;
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    
+    @if (User.Identity.IsAuthenticated && dailyQuest != null)
+    {
+        <div class="card mt-4">
+            <div class="card-header">
+                <h3>Daily Quest</h3>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">@dailyQuest.QuestName</h5>
+                <p class="card-text">Current Streak: <span id="streak-count">@dailyQuest.CurrentStreak</span> days</p>
+                <p class="card-text">XP Reward: <span id="xp-reward">@dailyQuest.CalculateXPReward()</span> XP</p>
+                
+                @if (!dailyQuest.CompletedToday)
+                {
+                    <button id="complete-quest" class="btn btn-primary" onclick="completeQuest()">Complete Quest</button>
+                }
+                else
+                {
+                    <button class="btn btn-success" disabled>Completed Today!</button>
+                }
+            </div>
+        </div>
+    }
 </div>
+
+@section Scripts {
+    <script>
+        function completeQuest() {
+            fetch('/Home/CompleteQuest', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Update streak and XP display
+                    document.getElementById('streak-count').textContent = data.streak;
+                    document.getElementById('xp-reward').textContent = data.xpGained;
+                    
+                    // Update header XP display
+                    document.getElementById('current-xp').textContent = data.newXP;
+                    document.getElementById('xp-to-next').textContent = data.xpToNext;
+                    document.getElementById('level-display').textContent = `Level: ${data.currentLevel}`;
+                    
+                    // Update progress bar
+                    const progressPercentage = (data.newXP * 100) / data.xpToNext;
+                    document.getElementById('xp-progress-bar').style.width = `${progressPercentage}%`;
+                    
+                    // Disable the complete button and update text
+                    const button = document.getElementById('complete-quest');
+                    button.disabled = true;
+                    button.classList.remove('btn-primary');
+                    button.classList.add('btn-success');
+                    button.textContent = 'Completed Today!';
+
+                    // Show level up message if applicable
+                    if (data.leveledUp) {
+                        alert('Congratulations! You leveled up to level ' + data.currentLevel + '!');
+                    }
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+}

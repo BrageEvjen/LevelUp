@@ -8,7 +8,7 @@
    {
        <div id="level-up-bar" style="background: black; padding: 10px;">
            <div style="display: flex; align-items: center; gap: 10px;">
-               <div class="level-display font-bold" style="font-size: 14px; font-weight: bold; color: white;">
+               <div id="level-display" class="level-display font-bold" style="font-size: 14px; font-weight: bold; color: white;">
                    Level: @(User.Identity?.IsAuthenticated == true ? (await UserManager.GetUserAsync(User))?.CurrentLevel : 0)
                </div>
 
@@ -28,12 +28,12 @@
                    }
 
                    <div class="progress-container" style="position: relative; height: 20px; width: 500px; background: #ddd; border-radius: 10px; overflow: hidden;">
-                       <div class="progress-bar" style="width: @progressPercentage%; background: #4caf50; height: 100%;"></div>
-                       <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: black; font-size: 12px; font-weight: bold; z-index: 1;">
-                           @currentUser.CurrentXP / @currentUser.XPToNextLevel
+                       <div id="xp-progress-bar" class="progress-bar" style="width: @progressPercentage%; background: #4caf50; height: 100%;"></div>
+                       <span id="xp-text" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: black; font-size: 12px; font-weight: bold; z-index: 1;">
+                           <span id="current-xp">@currentUser.CurrentXP</span> / <span id="xp-to-next">@currentUser.XPToNextLevel</span>
                        </span>
                    </div>
-               }            
+               }
            </div>
        </div>
        <li class="nav-item">
@@ -55,3 +55,4 @@
        </li>
    }
 </ul>
+

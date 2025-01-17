@@ -14,10 +14,17 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     
     // Add DbSet for TechTreeNode
     public DbSet<TechTreeNode> TechTreeNodes { get; set; }
+    public DbSet<DailyQuest> DailyQuests { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        
+        modelBuilder.Entity<DailyQuest>()
+            .HasOne(d => d.User)
+            .WithMany()
+            .HasForeignKey(d => d.UserId);
+
 
         // Makes it so a node can be connected to other nodes. Makes that possibility of needing to unclock other nodes first
         modelBuilder.Entity<TechTreeNode>()
