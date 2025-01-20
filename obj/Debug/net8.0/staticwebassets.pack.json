@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\brage\\LevelUp\\wwwroot\\js\\Home.js",
+      "PackagePath": "staticwebassets\\js\\Home.js"
+    },
+    {
       "Id": "C:\\Users\\brage\\LevelUp\\wwwroot\\js\\TechTree.js",
       "PackagePath": "staticwebassets\\js\\TechTree.js"
     },

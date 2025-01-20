@@ -1,5 +1,6 @@
 using LevelUp.Data;
 using LevelUp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -20,14 +21,22 @@ public class HomeController : Controller
         _logger = logger;
     }
 
+    public IActionResult Privacy()
+    {
+        return View();
+    }
+
+    
+    [Authorize]
     public async Task<IActionResult> Index()
     {
-        if (User.Identity.IsAuthenticated)
-        {
+            // Getting the curretnly logged in user
             var user = await _userManager.GetUserAsync(User);
+            // Gets the quest that is assigned to the current user
             var quest = await _context.DailyQuests
                 .FirstOrDefaultAsync(d => d.UserId == user.Id && d.QuestName == "Make Your Bed");
 
+            // If no quest is found then it generates a new quest
             if (quest == null)
             {
                 quest = new DailyQuest
@@ -41,6 +50,7 @@ public class HomeController : Controller
                 _context.DailyQuests.Add(quest);
                 await _context.SaveChangesAsync();
             }
+            // Or if there is a quest 
             else
             {
                 // Reset CompletedToday if it's a new day
@@ -57,7 +67,6 @@ public class HomeController : Controller
             }
 
             ViewData["DailyQuest"] = quest;
-        }
 
         return View();
     }
@@ -68,7 +77,7 @@ public class HomeController : Controller
     {
         if (!User.Identity.IsAuthenticated)
         {
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Front");
         }
 
         var user = await _userManager.GetUserAsync(User);

@@ -57,28 +57,9 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.Use(async (context, next) =>
-{
-    if (!context.User.Identity.IsAuthenticated && context.Request.Path == "/")
-    {
-        // Redirect unauthenticated users to the Front page
-        context.Response.Redirect("/Front");
-        return;
-    }
-
-    if (context.User.Identity.IsAuthenticated && context.Request.Path == "/")
-    {
-        // Redirect authenticated users to the Home page
-        context.Response.Redirect("/Home");
-        return;
-    }
-
-    await next();
-});
-
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Front}/{action=Index}/{id?}");
 app.MapRazorPages();
 
 

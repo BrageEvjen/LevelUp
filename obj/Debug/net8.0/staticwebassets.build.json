@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "IqbA+i4Pr5sqp4a415Dc0JCNL+muinffGby+8/opucQ=",
+  "Hash": "11uVrXaAuX/+u39267C9tYz/zPnZjV+LGyNnxg3N8es=",
   "Source": "LevelUp",
   "BasePath": "_content/LevelUp",
   "Mode": "Default",
@@ -1250,6 +1250,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\brage\\LevelUp\\wwwroot\\js\\Home.js",
+      "SourceId": "LevelUp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\brage\\LevelUp\\wwwroot\\",
+      "BasePath": "_content/LevelUp",
+      "RelativePath": "js/Home.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Home.js"
     },
     {
       "Identity": "C:\\Users\\brage\\LevelUp\\wwwroot\\js\\site.js",
