@@ -1,0 +1,37 @@
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Rider IDE files
+.idea/
+*.iml
+
+# Build and output directories
+bin/
+obj/
+dist/
+out/
+
+# Logs
+*.log
+
+# Node.js dependencies (if applicable)
+node_modules/
+
+# User secrets and config
+*.config
+*.env
+secrets.json
+
+# Temporary and cache files
+tmp/
+*.tmp
+*.bak
+
+# ASP.NET or .NET-specific
+*.dll
+*.pdb
+*.exe
+*.cache
+*.suo
+*.user
