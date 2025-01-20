@@ -35,3 +35,6 @@ tmp/
 *.cache
 *.suo
 *.user
+*.db
+*.db-wal
+*.db-shm
