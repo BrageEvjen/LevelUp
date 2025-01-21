@@ -2,9 +2,19 @@
 .DS_Store
 Thumbs.db
 
-# Rider IDE files
+# Ignore the app.db file in rider
+app.db
+
+# Ignore Rider-specific files
+*.idea/
 .idea/
 *.iml
+*.ipr
+*.iws
+.idea/workspace.xml
+.idea/libraries/
+.idea/modules.xml
+.idea/misc.xml
 
 # Build and output directories
 bin/
@@ -38,3 +48,21 @@ tmp/
 *.db
 *.db-wal
 *.db-shm
+
+
+# Ignore NuGet-related files
+*.nuget.dgspec.json
+*.nuget.g.props
+*.nuget.cache
+
+# Ignore other temporary or build-related files
+*.cache
+*.dll
+*.exe
+*.pdb
+*.runtimeconfig.cache
+*.json
+*.editorconfig
+*.txt
+*.nuget/
+*.nuget/
