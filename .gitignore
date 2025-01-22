@@ -47,10 +47,23 @@ tmp/
 
 # NuGet-related files
 *.nuget.*
+*.dgspec.json
+*.g.props
 
 # Ignore other temporary or build-related files
 *.cache
 *.runtimeconfig.cache
 *.editorconfig
 *.txt
+
+# Rider and MSBuild generated files
+obj/
+bin/
+*.AssemblyInfo.cs
+*.AssemblyInfoInputs.cache
+*.assets.cache
+*.genruntimeconfig.cache
+*.GeneratedMSBuildEditorConfig.editorconfig
+rider.project.model.nuget.info
+rider.project.restore.info
 
